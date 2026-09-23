@@ -111,6 +111,9 @@ health_df = health_df.rename(
     }
 )
 
+print("\nCleaned columns:")
+print(health_df.columns.tolist())
+
 print("\nFinal shape:")
 print(health_df.shape)
 
