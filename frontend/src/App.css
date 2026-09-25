@@ -1,0 +1,382 @@
+/* ==============================
+   Global
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f8fafc;
+
+    color: #0f172a;
+
+}
+
+
+
+#root {
+
+    width: 100%;
+
+}
+
+
+
+/* ==============================
+   Dashboard Layout
+============================== */
+
+
+.dashboard {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 40px;
+
+}
+
+
+
+/* ==============================
+   Hero Section
+============================== */
+
+
+.hero {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+}
+
+
+.hero h1 {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+}
+
+
+
+.hero p {
+
+    font-size: 18px;
+
+    color: #64748b;
+
+}
+
+
+
+
+
+/* ==============================
+   Statistics Cards
+============================== */
+
+
+.stats-container {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4, 1fr);
+
+    gap: 25px;
+
+    margin-bottom: 40px;
+
+}
+
+
+
+/* StatCard component */
+
+.stat-card {
+
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
+
+    transition: transform .2s ease;
+
+}
+
+
+.stat-card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+
+.stat-card h3 {
+
+    color:#64748b;
+
+    font-size:16px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.stat-card p {
+
+    font-size:36px;
+
+    font-weight:700;
+
+    margin:0;
+
+    color:#2563eb;
+
+}
+
+
+
+
+
+/* ==============================
+   Map Section
+============================== */
+
+
+.map-section {
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+
+.map-section h2 {
+
+    margin-top:0;
+
+}
+
+
+
+.map-container {
+
+    height:550px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#e2e8f0;
+
+    border-radius:15px;
+
+    color:#64748b;
+
+}
+
+
+
+
+
+/* ==============================
+   Charts
+============================== */
+
+
+.chart-card {
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    margin-top:40px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+
+.chart-card h2 {
+
+    margin-top:0;
+
+    margin-bottom:25px;
+
+    font-size:24px;
+
+}
+
+
+
+
+
+/* ==============================
+   Tables
+============================== */
+
+
+.table-container {
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    margin-top:40px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+
+table {
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+th {
+
+    text-align:left;
+
+    padding:15px;
+
+    color:#64748b;
+
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+
+
+td {
+
+    padding:15px;
+
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+
+
+tr:hover {
+
+    background:#f8fafc;
+
+}
+
+
+
+
+
+/* ==============================
+   Responsive
+============================== */
+
+
+@media(max-width:1100px){
+
+
+    .stats-container {
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+    .dashboard {
+
+        padding:20px;
+
+    }
+
+
+
+    .hero h1 {
+
+        font-size:34px;
+
+    }
+
+
+
+    .stats-container {
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .map-container {
+
+        height:350px;
+
+    }
+
+
+}
+
+.us-map {
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+}
