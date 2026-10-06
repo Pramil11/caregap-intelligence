@@ -26,3 +26,5 @@ Thumbs.db
 
 # VS Code local settings
 .vscode/
+
+caregap_backup.sql
