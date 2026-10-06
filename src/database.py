@@ -25,7 +25,7 @@ encoded_password = quote_plus(
 
 
 DATABASE_URL = (
-    f"postgresql://"
+    f"postgresql+psycopg2://"
     f"{DB_USER}:"
     f"{encoded_password}"
     f"@{DB_HOST}:"
