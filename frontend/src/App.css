@@ -380,3 +380,373 @@ tr:hover {
     border-radius:15px;
 
 }
+
+/* =========================
+   USA Map
+========================= */
+
+.us-map-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+
+.us-map-wrapper .leaflet-container {
+
+    border-radius: 15px;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================
+   Map Legend
+========================= */
+
+.map-legend {
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 25px;
+
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    padding: 16px 18px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 6px 20px rgba(15, 23, 42, 0.18);
+
+    min-width: 145px;
+
+}
+
+
+.map-legend h4 {
+
+    margin: 0 0 12px 0;
+
+    font-size: 14px;
+
+    color: #0f172a;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 7px 0;
+
+    font-size: 13px;
+
+    color: #475569;
+
+}
+
+
+.legend-color {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 4px;
+
+    display: inline-block;
+
+}
+
+
+.legend-color.high {
+
+    background: #ef4444;
+
+}
+
+
+.legend-color.medium {
+
+    background: #facc15;
+
+}
+
+
+.legend-color.low {
+
+    background: #22c55e;
+
+}
+
+
+.legend-color.no-data {
+
+    background: #cbd5e1;
+
+}
+
+
+/* =========================
+   State Popup
+========================= */
+
+.state-popup {
+
+    min-width: 190px;
+
+}
+
+
+.state-popup h3 {
+
+    margin: 0 0 14px 0;
+
+    font-size: 18px;
+
+    color: #0f172a;
+
+}
+
+
+.popup-score,
+.popup-risk {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+}
+
+
+.popup-score span,
+.popup-risk span {
+
+    color: #64748b;
+
+}
+
+
+.popup-score strong {
+
+    color: #0f172a;
+
+}
+
+
+.popup-risk strong {
+
+    font-weight: 700;
+
+}
+
+
+.risk-high {
+
+    color: #dc2626;
+
+}
+
+
+.risk-medium {
+
+    color: #ca8a04;
+
+}
+
+
+.risk-low {
+
+    color: #16a34a;
+
+}
+
+
+.risk-no-data {
+
+    color: #64748b;
+
+}
+
+/* =========================
+   State Explorer
+========================= */
+
+.state-header {
+
+    margin-bottom: 35px;
+
+}
+
+
+.state-header h1 {
+
+    font-size: 42px;
+
+    margin: 15px 0 5px;
+
+}
+
+
+.state-header p {
+
+    color: #64748b;
+
+    font-size: 18px;
+
+}
+
+
+.back-link {
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+.back-link:hover {
+
+    text-decoration: underline;
+
+}
+
+
+
+.highlight-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    margin-bottom: 40px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+.highlight-card span {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+.highlight-card h2 {
+
+    margin: 8px 0 0;
+
+}
+
+
+.highlight-score {
+
+    text-align: right;
+
+}
+
+
+.highlight-score strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    color: #dc2626;
+
+}
+
+
+.chart-subtitle {
+
+    color: #64748b;
+
+    margin-top: -15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+.table-container table {
+
+    min-width: 850px;
+
+}
+
+
+@media(max-width:700px){
+
+    .state-header h1 {
+
+        font-size: 32px;
+
+    }
+
+
+    .highlight-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+    }
+
+
+    .highlight-score {
+
+        text-align: left;
+
+    }
+
+}

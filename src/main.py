@@ -216,3 +216,173 @@ def state_risk(
         }
         for row in results
     ]
+
+@app.get("/states")
+def get_states(
+    db: Session = Depends(get_db)
+):
+
+    results = (
+        db.query(
+            CountyProfile.state_name
+        )
+        .distinct()
+        .order_by(
+            CountyProfile.state_name
+        )
+        .all()
+    )
+
+    return [
+        {
+            "state": row.state_name
+        }
+        for row in results
+    ]
+
+@app.get("/state/{state_name}")
+def get_state(
+    state_name: str,
+    db: Session = Depends(get_db)
+):
+
+    counties = (
+        db.query(CountyProfile)
+        .filter(
+            func.lower(
+                CountyProfile.state_name
+            ) == state_name.lower()
+        )
+        .all()
+    )
+
+
+    if not counties:
+
+        raise HTTPException(
+            status_code=404,
+            detail="State not found"
+        )
+
+
+    total_counties = len(counties)
+
+
+    average_score = sum(
+        county.caregap_score_final
+        for county in counties
+    ) / total_counties
+
+
+    high_risk = sum(
+        1
+        for county in counties
+        if county.caregap_score_final >= 0.5
+    )
+
+
+    highest_risk = max(
+        counties,
+        key=lambda county:
+            county.caregap_score_final
+    )
+
+
+    total_population = sum(
+        county.population or 0
+        for county in counties
+    )
+
+
+    return {
+
+        "state": counties[0].state_name,
+
+        "total_counties": total_counties,
+
+        "average_caregap_score":
+            round(average_score, 3),
+
+        "high_risk_counties":
+            high_risk,
+
+        "highest_risk_county":
+            highest_risk.county_name,
+
+        "highest_risk_score":
+            round(
+                highest_risk.caregap_score_final,
+                3
+            ),
+
+        "population":
+            total_population
+
+    }
+
+@app.get("/state/{state_name}/counties")
+def get_state_counties(
+    state_name: str,
+    db: Session = Depends(get_db)
+):
+
+    counties = (
+        db.query(CountyProfile)
+        .filter(
+            func.lower(
+                CountyProfile.state_name
+            ) == state_name.lower()
+        )
+        .order_by(
+            CountyProfile.caregap_score_final.desc()
+        )
+        .all()
+    )
+
+
+    if not counties:
+
+        raise HTTPException(
+            status_code=404,
+            detail="State not found"
+        )
+
+
+    return [
+
+        {
+            "county_name":
+                county.county_name,
+
+            "county_fips":
+                county.county_fips,
+
+            "population":
+                county.population,
+
+            "caregap_score":
+                round(
+                    county.caregap_score_final,
+                    3
+                ),
+
+            "poverty_rate":
+                county.poverty_rate,
+
+            "uninsured_rate":
+                county.uninsured_rate,
+
+            "healthcare_access_score":
+                county.healthcare_access_score,
+
+            "social_vulnerability_score":
+                county.social_vulnerability_score,
+
+            "health_burden_score":
+                county.health_burden_score
+
+        }
+
+        for county in counties
+
+    ]
