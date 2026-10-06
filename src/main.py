@@ -134,7 +134,7 @@ def stats(
     high_risk = (
         db.query(CountyProfile)
         .filter(
-            CountyProfile.caregap_score_final >= 0.5
+            CountyProfile.caregap_score_final >= 0.4
         )
         .count()
     )
@@ -154,7 +154,7 @@ def risk_distribution(
     high = (
         db.query(CountyProfile)
         .filter(
-            CountyProfile.caregap_score_final >= 0.6
+            CountyProfile.caregap_score_final >= 0.4
         )
         .count()
     )
@@ -163,8 +163,8 @@ def risk_distribution(
     medium = (
         db.query(CountyProfile)
         .filter(
-            CountyProfile.caregap_score_final >= 0.35,
-            CountyProfile.caregap_score_final < 0.6
+            CountyProfile.caregap_score_final >= 0.3,
+            CountyProfile.caregap_score_final < 0.4
         )
         .count()
     )
@@ -173,7 +173,7 @@ def risk_distribution(
     low = (
         db.query(CountyProfile)
         .filter(
-            CountyProfile.caregap_score_final < 0.35
+            CountyProfile.caregap_score_final < 0.3
         )
         .count()
     )
@@ -277,7 +277,7 @@ def get_state(
     high_risk = sum(
         1
         for county in counties
-        if county.caregap_score_final >= 0.5
+        if county.caregap_score_final >= 0.4
     )
 
 

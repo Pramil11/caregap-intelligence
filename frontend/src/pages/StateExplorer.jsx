@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
+import StateCountyMap from "../components/StateCountyMap";
 import api from "../api/client";
 
 import {
@@ -249,7 +249,24 @@ function StateExplorer(){
 
 
 
+            <section className="map-section">
 
+                <h2>
+                    {summary.state} County CareGap Map
+                </h2>
+
+                <p className="chart-subtitle">
+
+                    Explore CareGap scores across counties
+                    in {summary.state}.
+
+                </p>
+
+                <StateCountyMap
+                    stateName={summary.state}
+                />
+
+            </section>
 
             {/* =========================
                 Highest Risk County

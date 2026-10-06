@@ -10,6 +10,10 @@ import {
     useState
 } from "react";
 
+import {
+    useNavigate
+} from "react-router-dom";
+
 import api from "../api/client";
 
 import states from "../data/us-states.json";
@@ -51,7 +55,7 @@ function getRiskLevel(score){
         return "No Data";
     }
 
-    if(score >= 0.45){
+    if(score >= 0.40){
         return "High";
     }
 
@@ -70,7 +74,7 @@ function getStateColor(score){
         return "#cbd5e1";
     }
 
-    if(score >= 0.45){
+    if(score >= 0.40){
         return "#ef4444";
     }
 
@@ -149,11 +153,13 @@ function getStyle(
 function onEachState(
     feature,
     layer,
-    stateRisk
+    stateRisk,
+    navigate
 ){
 
     const stateName =
         feature.properties.name;
+
 
     const state =
         findStateData(
@@ -161,10 +167,12 @@ function onEachState(
             stateRisk
         );
 
+
     const score =
         state
         ? state.score
         : null;
+
 
     const risk =
         getRiskLevel(score);
@@ -184,6 +192,7 @@ function onEachState(
                 ${stateName}
             </h3>
 
+
             <div class="popup-score">
 
                 <span>
@@ -196,6 +205,7 @@ function onEachState(
 
             </div>
 
+
             <div class="popup-risk">
 
                 <span>
@@ -205,10 +215,18 @@ function onEachState(
                 <strong
                     class="risk-${risk
                         .toLowerCase()
-                        .replace(" ", "-")}"
+                        .replace(" ", "-")}
                 >
                     ${risk}
                 </strong>
+
+            </div>
+
+
+            <div class="popup-hint">
+
+                Double-click to open
+                state analysis
 
             </div>
 
@@ -247,12 +265,27 @@ function onEachState(
 
             );
 
+        },
+
+
+        click: () => {
+
+            layer.openPopup();
+
+        },
+
+
+        dblclick: () => {
+
+            navigate(
+                `/state/${encodeURIComponent(stateName)}`
+            );
+
         }
 
     });
 
 }
-
 
 
 function MapLegend(){
@@ -265,7 +298,9 @@ function MapLegend(){
                 CareGap Risk
             </h4>
 
-
+            <div className="legend-threshold">
+                Based on CareGap Score
+            </div>
             <div className="legend-item">
 
                 <span
@@ -273,7 +308,7 @@ function MapLegend(){
                 ></span>
 
                 <span>
-                    High
+                    High ≥ 0.40
                 </span>
 
             </div>
@@ -286,7 +321,7 @@ function MapLegend(){
                 ></span>
 
                 <span>
-                    Medium
+                    Medium 0.30 - 0.39
                 </span>
 
             </div>
@@ -299,7 +334,7 @@ function MapLegend(){
                 ></span>
 
                 <span>
-                    Low
+                    Low &lt; 0.30
                 </span>
 
             </div>
@@ -326,6 +361,8 @@ function MapLegend(){
 
 
 function USMap(){
+
+    const navigate = useNavigate();
 
     const [
         stateRisk,
@@ -381,6 +418,8 @@ function USMap(){
                 maxZoom={7}
 
                 scrollWheelZoom={true}
+
+                doubleClickZoom={false}
 
                 maxBounds={[
 
@@ -446,7 +485,8 @@ function USMap(){
                                 onEachState(
                                     feature,
                                     layer,
-                                    stateRisk
+                                    stateRisk,
+                                    navigate
                                 )
 
                         }
@@ -457,7 +497,7 @@ function USMap(){
 
 
             </MapContainer>
-
+                
 
             <MapLegend />
 
